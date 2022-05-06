@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="icon" th:href="@{/images/logopag.png}">
+    <title>EGG Library</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <img th:src="@{/images/logopag.png}" alt="" width="40" height="40">
+                <a th:href="@{/}" class="navbar-brand">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Show / Hide Menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" th:href="@{/books/form}">Create</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/books/formUpdate}">Update</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/books}">Books</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr class="table-dark">
+                                <th>Isbn</th>
+                                <th>Tittle</th>
+                                <th>Year</th>
+                                <th>Copies</th>
+                                <th>Borrowed Copies</th>
+                                <th>Remaining Copies</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="book : ${books}">
+                                <td th:text="${book.isbn}"></td>
+                                <td th:text="${book.tittle}"></td>
+                                <td th:text="${book.yearB}"></td>
+                                <td th:text="${book.copies}"></td>
+                                <td th:text="${book.borrowedCopies}"></td>
+                                <td th:text="${book.remainingCopies}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
