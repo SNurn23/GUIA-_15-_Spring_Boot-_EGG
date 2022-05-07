@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Book")
@@ -12,6 +13,7 @@ public class Book {
     @Column(name = "isbn")
     private Integer isbn;
 
+    @NotBlank(message = "Tittle is required")
     @Column(name = "tittle")
     private String tittle;
 

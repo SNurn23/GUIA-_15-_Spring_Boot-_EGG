@@ -39,4 +39,9 @@ public class BookService {
     public Book getByIsbn(int isbn) {
         return bookRepository.findById(isbn).get();
     }
+
+    @Transactional
+    public void deleteByIsbn(int isbn){
+        bookRepository.deleteById(isbn);
+    }
 }

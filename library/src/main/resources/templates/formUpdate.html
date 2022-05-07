@@ -19,7 +19,6 @@
                 <div class="collapse navbar-collapse" id="menu">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" th:href="@{/books/form}">Create</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/books/formUpdate}">Update</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/books}">Books</a></li>
                     </ul>
                 </div>
@@ -37,7 +36,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="tittle" class="form-label">Tittle:</label>
-                            <input type="text" class="form-control" th:field="*{tittle}" id="tittle" placeholder="El principito" required autofocus>
+                            <input type="text" class="form-control" th:field="*{tittle}" id="tittle" placeholder="El principito" autofocus>
+                            <div class="text-danger mt-2" th:if="${#fields.hasErrors('tittle')}" th:errors="*{tittle}"></div>
                         </div>
                         <div class="mb-3">
                             <label for="year" class="form-label">Year:</label>
