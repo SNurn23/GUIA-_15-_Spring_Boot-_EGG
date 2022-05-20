@@ -1,4 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
 body {
     font-family: 'Poppins', sans-serif;
+    background: #f2e394;
+}
+table {
+    background-color: white;
+}
+
+tr:hover{
+    background-color: #FAFAD2;
+}
+
+tr{
+    border: 1px solid #000000;
+}
+
+.btn-update, .btn-delete {
+    color: white;
+    border: 1px solid #000000;
 }

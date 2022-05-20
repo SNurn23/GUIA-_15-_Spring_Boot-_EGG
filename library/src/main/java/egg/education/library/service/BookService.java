@@ -2,16 +2,17 @@ package egg.education.library.service;
 
 import egg.education.library.entity.Book;
 import egg.education.library.repository.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BookService {
-    @Autowired
-    private BookRepository bookRepository;
+
+    private final BookRepository bookRepository;
 
     @Transactional
     public void createBook(Book book){
@@ -21,7 +22,7 @@ public class BookService {
 
     @Transactional
     public void updateBook(Book book){
-        Book b = bookRepository.findById(book.getIsbn()).get();
+        Book b = bookRepository.findById(book.getId()).get();
         b.setTittle(book.getTittle());
         b.setYearB(book.getYearB());
         b.setCopies(book.getCopies());
@@ -36,12 +37,12 @@ public class BookService {
     }
 
     @Transactional(readOnly = true)
-    public Book getByIsbn(int isbn) {
-        return bookRepository.findById(isbn).get();
+    public Book getById(int id) {
+        return bookRepository.findById(id).get();
     }
 
     @Transactional
-    public void deleteByIsbn(int isbn){
-        bookRepository.deleteById(isbn);
+    public void deleteById(int id){
+        bookRepository.deleteById(id);
     }
 }

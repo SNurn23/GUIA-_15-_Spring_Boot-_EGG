@@ -1,103 +1,54 @@
 package egg.education.library.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "Book")
-public class Book {
-    @Id
-    @Column(name = "isbn")
-    private Integer isbn;
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "book", indexes = {@Index(name = "idx_book_tittle", columnList = "tittle")})
+public class Book implements Serializable{
 
-    @NotBlank(message = "Tittle is required")
-    @Column(name = "tittle")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Integer id;
+
+    //@NotBlank(message = "Isbn is required")
+    //@Pattern(regexp = "^(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$", message = "The isbn format is incorrect")
+    @Column(name = "isbn", nullable = false)
+    private String isbn;
+
+    //@NotBlank(message = "Tittle is required")
+    @Column(name = "tittle", nullable = false)
     private String tittle;
 
-    @Column(name = "yearB")
-    private int yearB;
+    //@NotNull(message = "Year is required")
+    @Column(name = "yearB", columnDefinition = "YEAR", nullable = false)
+    private Integer yearB;
 
-    @Column(name = "copies")
-    private int copies;
+   // @NotNull(message = "Copies is required")
+    @Column(name = "copies", nullable = false)
+    private Integer copies;
 
-    @Column(name = "borrowed_Copies")
-    private int borrowedCopies;
+   // @NotNull(message = "Borrowed Copies is required")
+    @Column(name = "borrowed_Copies", nullable = false)
+    private Integer borrowedCopies;
 
-    @Column(name = "remaining_Copies")
-    private int remainingCopies;
+  //  @NotNull(message = "Remaining Copies is required")
+    @Column(name = "remaining_Copies", nullable = false)
+    private Integer remainingCopies;
 
     @Column(name = "discharge", nullable = false)
     private boolean discharge;
-
-    public Book(Integer isbn, String tittle, int yearB, int copies, int borrowedCopies, int remainingCopies, boolean discharge) {
-        this.isbn = isbn;
-        this.tittle = tittle;
-        this.yearB = yearB;
-        this.copies = copies;
-        this.borrowedCopies = borrowedCopies;
-        this.remainingCopies = remainingCopies;
-        this.discharge = discharge;
-    }
-
-    public Book() {
-    }
-
-    public Integer getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(Integer isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getTittle() {
-        return tittle;
-    }
-
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
-    }
-
-    public int getYearB() {
-        return yearB;
-    }
-
-    public void setYearB(int yearB) {
-        this.yearB = yearB;
-    }
-
-    public int getCopies() {
-        return copies;
-    }
-
-    public void setCopies(int copies) {
-        this.copies = copies;
-    }
-
-    public int getBorrowedCopies() {
-        return borrowedCopies;
-    }
-
-    public void setBorrowedCopies(int borrowedCopies) {
-        this.borrowedCopies = borrowedCopies;
-    }
-
-    public int getRemainingCopies() {
-        return remainingCopies;
-    }
-
-    public void setRemainingCopies(int remainingCopies) {
-        this.remainingCopies = remainingCopies;
-    }
-
-    public boolean isDischarge() {
-        return discharge;
-    }
-
-    public void setDischarge(boolean discharge) {
-        this.discharge = discharge;
-    }
 }
